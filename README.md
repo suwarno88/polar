@@ -4,7 +4,7 @@
 
 Aplikasi web interaktif berbasis **Streamlit** yang menyajikan materi komprehensif tentang
 *Patterns and Algebraic Thinking* (Pola dan Pemikiran Aljabar) khusus untuk konteks
-pembelajaran matematika di Sekolah Dasar Indonesia.
+pembelajaran matematika di Sekolah Dasar.
 
 ---
 
