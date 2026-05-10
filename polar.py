@@ -1,5 +1,7 @@
 """
-POLAR: POla dan aLjabar inteRaktif
+Website Interaktif: Pola dan Pemikiran Aljabar dalam Matematika
+Untuk Mahasiswa Calon Guru Sekolah Dasar
+Dibuat dengan Streamlit
 """
 
 import streamlit as st
@@ -12,7 +14,7 @@ import pandas as pd
 
 # ---------- KONFIGURASI HALAMAN ----------
 st.set_page_config(
-    page_title="POLAR: POla dan aLjabar inteRaktif",
+    page_title="Pola & Pemikiran Aljabar | Calon Guru SD",
     page_icon="🧮",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -979,8 +981,8 @@ def page_ch3():
         <strong>💡 Contoh untuk SD</strong><br>
         "Andi menabung Rp2.000 di hari pertama, dan setiap hari berikutnya menambah Rp500.
         Berapa tabungan Andi di hari ke-10?"<br>
-        Jawab: $a = 2000$, $b = 500$, $n = 10$ → $U_{10} = 2000 + 9 \\times 500 = 6500$. Jadi
-        tabungannya Rp6.500.
+        Jawab: <em>a</em> = 2000, <em>b</em> = 500, <em>n</em> = 10 →
+        <em>U<sub>10</sub></em> = 2000 + 9 × 500 = 6.500. Jadi tabungannya Rp6.500.
         </div>
         """,
         unsafe_allow_html=True,
@@ -1023,8 +1025,8 @@ def page_ch3():
         st.markdown(
             f"<div class='example-box'>"
             f"Barisan: <strong>{', '.join(f'{s:.2f}' for s in suku_geo[:6])}, ...</strong><br>"
-            f"Jika $r > 1$: tumbuh sangat cepat (eksponensial). "
-            f"Jika $0 < r < 1$: mengecil mendekati nol."
+            f"Jika <em>r</em> &gt; 1: tumbuh sangat cepat (eksponensial). "
+            f"Jika 0 &lt; <em>r</em> &lt; 1: mengecil mendekati nol."
             f"</div>",
             unsafe_allow_html=True,
         )
@@ -1087,7 +1089,8 @@ def page_ch3():
         <div class='info-box'>
         <strong>🎓 Tahukah Anda?</strong><br>
         Penjumlahan dua bilangan segitiga berurutan selalu menghasilkan bilangan persegi!
-        Contoh: $T_3 + T_4 = 6 + 10 = 16 = 4^2$. Coba buktikan dengan menyusun gambar!
+        Contoh: <em>T<sub>3</sub></em> + <em>T<sub>4</sub></em> = 6 + 10 = 16 = 4<sup>2</sup>.
+        Coba buktikan dengan menyusun gambar!
         </div>
         """,
         unsafe_allow_html=True,
@@ -1142,7 +1145,7 @@ def page_ch3():
         <div class='example-box'>
         <strong>✨ Keajaiban Rasio Emas</strong><br>
         Perhatikan kolom rasio di tabel: ia mendekati <em>1.618...</em> yang dikenal sebagai
-        <strong>rasio emas</strong> ($\\varphi$). Banyak seniman dan arsitek menggunakan rasio ini
+        <strong>rasio emas</strong> (<em>φ</em>). Banyak seniman dan arsitek menggunakan rasio ini
         karena dianggap memberi proporsi paling indah secara visual.
         </div>
         """,
@@ -1269,11 +1272,12 @@ def page_ch4():
         <strong>🔍 Pengamatan:</strong> Selisih antar suku <em>selalu 2</em>. Ini berarti
         polanya bertambah dua setiap kali. Aturan dapat ditulis:<br><br>
         <em>"Banyak korek api = 2 × banyak segitiga + 1"</em><br>
-        Atau dalam simbol: $$K = 2n + 1$$
+        Atau dalam simbol:
         </div>
         """,
         unsafe_allow_html=True,
     )
+    st.latex(r"K = 2n + 1")
 
     # ---- 4.3 Pola "Kata" ke "Simbol" ----
     st.header("4.3 Dari Kata-kata ke Simbol")
@@ -1328,11 +1332,10 @@ def page_ch4():
             unsafe_allow_html=True,
         )
         st.markdown(
-            f"<div class='example-box'>"
-            f"<strong>Bentuk simbolik:</strong><br>$${rumus}$$"
-            f"</div>",
+            "<div class='example-box'><strong>Bentuk simbolik:</strong></div>",
             unsafe_allow_html=True,
         )
+        st.latex(rumus)
     with c2:
         fig, ax = plt.subplots(figsize=(6, 3.5))
         ax.plot(range(1, 8), suku, "s-", color="#7c3aed", markersize=10, linewidth=2.5)
@@ -1350,7 +1353,7 @@ def page_ch4():
         <div class='activity-box'>
         <strong>🎓 Refleksi Pedagogis</strong><br>
         Mengapa penting bagi siswa SD untuk <em>mendeskripsikan pola dengan kata-kata
-        terlebih dahulu</em> sebelum menggunakan simbol $n$? Diskusikan dengan teman dan
+        terlebih dahulu</em> sebelum menggunakan simbol <em>n</em>? Diskusikan dengan teman dan
         kaitkan dengan konsep <em>scaffolding</em> dalam pembelajaran.
         </div>
         """,
@@ -1471,9 +1474,9 @@ def page_ch5():
         else:
             x = (kanan - kiri) / tambah_kiri
             if x == int(x):
-                hasil = f"$x = {int(x)}$"
+                hasil = f"<em>x</em> = {int(x)}"
             else:
-                hasil = f"$x = {x:.2f}$"
+                hasil = f"<em>x</em> = {x:.2f}"
         st.markdown(
             f"<div class='example-box'><strong>Solusi:</strong> {hasil}</div>",
             unsafe_allow_html=True,
@@ -1529,8 +1532,8 @@ def page_ch5():
         <strong>💡 Tips Mengajar</strong><br>
         Saat memperkenalkan persamaan di SD, gunakan istilah <em>"sama dengan"</em> dengan
         sungguh-sungguh: tunjukkan bahwa kedua sisi tanda <strong>=</strong> harus
-        <em>seimbang</em>. Hindari kebiasaan menulis $3 + 5 = 8 + 2 = 10$ karena ini melatih
-        miskonsepsi: $3 + 5 \\neq 8 + 2$!
+        <em>seimbang</em>. Hindari kebiasaan menulis <em>3 + 5 = 8 + 2 = 10</em> karena ini melatih
+        miskonsepsi: <em>3 + 5 ≠ 8 + 2</em>!
         </div>
         """,
         unsafe_allow_html=True,
@@ -1557,19 +1560,19 @@ def page_ch5():
         input_val = st.slider("Input", 0, 10, 4, key="ch5_input")
 
         if operasi == "Tambah 5":
-            output = input_val + 5; rumus = "f(x) = x + 5"
+            output = input_val + 5; rumus_html = "<em>f(x)</em> = <em>x</em> + 5"
         elif operasi == "Kalikan 3":
-            output = input_val * 3; rumus = "f(x) = 3x"
+            output = input_val * 3; rumus_html = "<em>f(x)</em> = 3<em>x</em>"
         elif operasi == "Kurangi 2":
-            output = input_val - 2; rumus = "f(x) = x − 2"
+            output = input_val - 2; rumus_html = "<em>f(x)</em> = <em>x</em> − 2"
         elif operasi == "Kuadratkan":
-            output = input_val ** 2; rumus = "f(x) = x²"
+            output = input_val ** 2; rumus_html = "<em>f(x)</em> = <em>x</em><sup>2</sup>"
         else:
-            output = 2 * input_val + 1; rumus = "f(x) = 2x + 1"
+            output = 2 * input_val + 1; rumus_html = "<em>f(x)</em> = 2<em>x</em> + 1"
 
         st.markdown(
             f"<div class='example-box'>"
-            f"<strong>Aturan:</strong> ${rumus}$<br>"
+            f"<strong>Aturan:</strong> {rumus_html}<br>"
             f"<strong>Input:</strong> {input_val}<br>"
             f"<strong>Output:</strong> {output}"
             f"</div>",
@@ -1633,13 +1636,31 @@ def page_ch6():
     jenis = st.selectbox(
         "🎨 Pilih jenis pola persamaan:",
         [
+            # — Persamaan Klasik —
             "📈 Persamaan Linear: y = ax + b",
             "🌙 Persamaan Kuadrat: y = ax² + bx + c",
             "🌊 Gelombang Sinus: y = A sin(Bx + C)",
             "⚡ Fungsi Pangkat: y = a · xⁿ",
+            # — Kurva Parametrik —
             "🎭 Kurva Lissajous (parametrik)",
+            "❤️ Kurva Hati (Heart Curve)",
+            "🦋 Kurva Kupu-kupu (Butterfly Curve)",
+            "⚙️ Hipotrokoid (Spirograph)",
+            # — Kurva Polar & Spesial —
             "🌹 Kurva Mawar (polar): r = a cos(kθ)",
-            "🌀 Spiral: r = a · θ",
+            "🌺 Mawar Maurer (Maurer Rose)",
+            "🎯 Superformula (Kurva Gielis)",
+            "🌀 Spiral Archimedes: r = a · θ",
+            "🐚 Spiral Fermat: r = a√θ",
+            # — 3D —
+            "💧 Fungsi Sinc 3D (Ripple)",
+            # — Fraktal —
+            "❄️ Koch Snowflake",
+            "🔺 Segitiga Sierpinski",
+            "🌌 Himpunan Mandelbrot",
+            "⭐ Himpunan Julia",
+            # — Sistem Dinamis —
+            "🦎 Atraktor Hénon",
         ],
     )
 
@@ -1674,8 +1695,8 @@ def page_ch6():
         st.markdown(
             """
             <div class='info-box'>
-            🔍 <strong>Eksplorasi:</strong> Apa yang terjadi jika $a = 0$? Apa yang terjadi jika
-            $a$ negatif? Mengapa garis selalu lurus, tidak peduli berapa pun nilai $a$ dan $b$?
+            🔍 <strong>Eksplorasi:</strong> Apa yang terjadi jika <em>a</em> = 0? Apa yang terjadi jika
+            <em>a</em> negatif? Mengapa garis selalu lurus, tidak peduli berapa pun nilai <em>a</em> dan <em>b</em>?
             </div>
             """,
             unsafe_allow_html=True,
@@ -1715,9 +1736,9 @@ def page_ch6():
         st.markdown(
             """
             <div class='info-box'>
-            🔍 <strong>Tantangan:</strong> Cari kombinasi $a$, $b$, $c$ yang membuat parabola
-            <em>menyentuh</em> sumbu x tepat di satu titik (akar kembar). Petunjuk: diskriminan
-            $b^2 - 4ac = 0$.
+            🔍 <strong>Tantangan:</strong> Cari kombinasi <em>a</em>, <em>b</em>, <em>c</em>
+            yang membuat parabola <em>menyentuh</em> sumbu x tepat di satu titik (akar kembar).
+            Petunjuk: diskriminan <em>b<sup>2</sup> − 4ac</em> = 0.
             </div>
             """,
             unsafe_allow_html=True,
@@ -1799,7 +1820,7 @@ def page_ch6():
             """
             <div class='example-box'>
             🌟 Coba kombinasi (a, b) = (3, 2), (5, 4), (5, 6). Perhatikan bahwa kurva tertutup
-            terjadi ketika $a/b$ adalah <em>bilangan rasional</em>!
+            terjadi ketika <em>a/b</em> adalah <em>bilangan rasional</em>!
             </div>
             """,
             unsafe_allow_html=True,
@@ -1859,6 +1880,437 @@ def page_ch6():
             ax.grid(alpha=0.3)
             st.pyplot(fig)
             plt.close()
+
+    elif jenis.startswith("❤️"):
+        st.header("❤️ Kurva Hati (Heart Curve)")
+        st.markdown(
+            "Kurva hati klasik dirumuskan dengan persamaan **parametrik** trigonometri. "
+            "Ia adalah _ikon matematis_ tentang bagaimana persamaan dapat melukis bentuk emosional."
+        )
+        st.latex(r"x(t) = 16 \sin^3(t)")
+        st.latex(r"y(t) = 13\cos(t) - 5\cos(2t) - 2\cos(3t) - \cos(4t)")
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            skala = st.slider("Skala", 0.3, 2.0, 1.0, 0.1, key="ht_s")
+            rotasi = st.slider("Rotasi (°)", 0, 360, 0, 15, key="ht_r")
+            warna_h = st.selectbox("Warna", ["Merah", "Pink", "Ungu"], key="ht_c")
+            color_map = {"Merah": "#dc2626", "Pink": "#ec4899", "Ungu": "#7c3aed"}
+        with c2:
+            t = np.linspace(0, 2*np.pi, 1000)
+            x = skala * 16 * np.sin(t)**3
+            y = skala * (13*np.cos(t) - 5*np.cos(2*t) - 2*np.cos(3*t) - np.cos(4*t))
+            rad = np.radians(rotasi)
+            x_r = x*np.cos(rad) - y*np.sin(rad)
+            y_r = x*np.sin(rad) + y*np.cos(rad)
+            fig, ax = plt.subplots(figsize=(6, 6))
+            ax.plot(x_r, y_r, color=color_map[warna_h], linewidth=3)
+            ax.fill(x_r, y_r, color=color_map[warna_h], alpha=0.3)
+            ax.set_aspect("equal")
+            ax.grid(alpha=0.3)
+            ax.set_title(f"Kurva Hati (skala={skala:.1f}, rotasi={rotasi}°)",
+                         fontweight="bold")
+            st.pyplot(fig)
+            plt.close()
+
+    elif jenis.startswith("🦋"):
+        st.header("🦋 Kurva Kupu-kupu (Butterfly Curve)")
+        st.markdown(
+            "Kurva kupu-kupu transendental oleh **Temple H. Fay** (1989). Bentuknya menyerupai "
+            "sayap kupu-kupu, dan menariknya tidak pernah menutup sempurna — semakin lama "
+            "diiterasikan, semakin kompleks polanya."
+        )
+        st.latex(r"r(t) = e^{\cos t} - 2\cos(4t) + \sin^5\!\left(\frac{t}{12}\right)")
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            durasi = st.slider("Durasi (kelipatan π)", 4, 24, 12, key="bf_d")
+            n_pts = st.slider("Kerapatan titik", 1000, 10000, 5000, 500, key="bf_n")
+        with c2:
+            t = np.linspace(0, durasi*np.pi, n_pts)
+            r = np.exp(np.cos(t)) - 2*np.cos(4*t) + np.sin(t/12)**5
+            x = r * np.sin(t)
+            y = r * np.cos(t)
+            fig, ax = plt.subplots(figsize=(6, 6))
+            ax.plot(x, y, color="#db2777", linewidth=0.5)
+            ax.set_aspect("equal")
+            ax.grid(alpha=0.3)
+            ax.set_title(f"Kurva Kupu-kupu (durasi {durasi}π)", fontweight="bold")
+            st.pyplot(fig)
+            plt.close()
+
+    elif jenis.startswith("⚙️"):
+        st.header("⚙️ Hipotrokoid (Spirograph)")
+        st.markdown(
+            "**Hipotrokoid** adalah jejak titik pada lingkaran kecil (radius _r_) yang menggelinding "
+            "di _dalam_ lingkaran besar (radius _R_). Pena berada pada jarak _d_ dari pusat lingkaran "
+            "kecil. Inilah dasar matematis mainan **Spirograph**!"
+        )
+        st.latex(r"x(t) = (R-r)\cos t + d\cos\!\left(\tfrac{R-r}{r}t\right)")
+        st.latex(r"y(t) = (R-r)\sin t - d\sin\!\left(\tfrac{R-r}{r}t\right)")
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            R_h = st.slider("R (radius luar)", 3, 15, 10, key="hyp_R")
+            r_h = st.slider("r (radius dalam)", 1, 10, 6, key="hyp_r")
+            d_h = st.slider("d (jarak pena)", 1, 10, 5, key="hyp_d")
+        with c2:
+            t = np.linspace(0, 20*np.pi, 5000)
+            x = (R_h - r_h)*np.cos(t) + d_h*np.cos((R_h - r_h)/r_h * t)
+            y = (R_h - r_h)*np.sin(t) - d_h*np.sin((R_h - r_h)/r_h * t)
+            fig, ax = plt.subplots(figsize=(6, 6))
+            ax.plot(x, y, color="#0891b2", linewidth=0.8)
+            ax.set_aspect("equal")
+            ax.grid(alpha=0.3)
+            ax.set_title(f"Spirograph: R={R_h}, r={r_h}, d={d_h}", fontweight="bold")
+            st.pyplot(fig)
+            plt.close()
+        st.markdown(
+            "<div class='example-box'>💡 Coba kombinasi <em>R=10, r=3, d=7</em> atau "
+            "<em>R=12, r=5, d=8</em>. Saat <em>r</em> membagi habis <em>R</em>, kurva tertutup; "
+            "jika tidak, ia membentuk pola yang tampak 'berputar'.</div>",
+            unsafe_allow_html=True,
+        )
+
+    elif jenis.startswith("🌺"):
+        st.header("🌺 Mawar Maurer (Maurer Rose)")
+        st.markdown(
+            "Mawar Maurer ditemukan **Peter M. Maurer** (1987). Caranya: ambil titik-titik pada "
+            "kurva mawar $r = \\sin(n\\theta)$ di sudut $\\theta = k \\cdot d$ (untuk $k = 0, 1, "
+            "2, \\ldots, 360$), lalu **hubungkan dengan garis lurus**. Hasilnya pola simetris "
+            "berlapis yang luar biasa."
+        )
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            n_mr = st.slider("n (parameter mawar)", 2, 12, 6, key="mr_n")
+            d_mr = st.slider("d (langkah sudut °)", 1, 180, 71, key="mr_d")
+        with c2:
+            k = np.arange(361)
+            theta_rad = np.radians(k * d_mr)
+            r = np.sin(n_mr * theta_rad)
+            x = r * np.cos(theta_rad)
+            y = r * np.sin(theta_rad)
+            fig, ax = plt.subplots(figsize=(6, 6))
+            ax.plot(x, y, color="#7c3aed", linewidth=0.8)
+            ax.fill(x, y, color="#7c3aed", alpha=0.08)
+            ax.set_aspect("equal")
+            ax.grid(alpha=0.3)
+            ax.set_title(f"Mawar Maurer (n={n_mr}, d={d_mr}°)", fontweight="bold")
+            st.pyplot(fig)
+            plt.close()
+        st.markdown(
+            "<div class='example-box'>💡 Eksplorasi terkenal: <em>n=6, d=71°</em>; "
+            "<em>n=2, d=39°</em>; <em>n=7, d=29°</em>. "
+            "Perubahan kecil pada <em>d</em> menghasilkan pola yang sangat berbeda!</div>",
+            unsafe_allow_html=True,
+        )
+
+    elif jenis.startswith("🎯"):
+        st.header("🎯 Superformula (Kurva Gielis)")
+        st.markdown(
+            "**Superformula** oleh _Johan Gielis_ (2003) adalah generalisasi luar biasa yang "
+            "dapat menghasilkan bentuk berbagai makhluk hidup: bunga, daun, bintang laut, dan "
+            "lainnya. Cukup ubah enam parameter!"
+        )
+        st.latex(
+            r"r(\phi) = \left(\left|\frac{\cos(m\phi/4)}{a}\right|^{n_2} + "
+            r"\left|\frac{\sin(m\phi/4)}{b}\right|^{n_3}\right)^{-1/n_1}"
+        )
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            m_sf = st.slider("m (simetri)", 1, 12, 6, key="sf_m")
+            a_sf = st.slider("a", 0.5, 3.0, 1.0, 0.1, key="sf_a")
+            b_sf = st.slider("b", 0.5, 3.0, 1.0, 0.1, key="sf_b")
+            n1_sf = st.slider("n₁", 0.1, 10.0, 1.0, 0.1, key="sf_n1")
+            n2_sf = st.slider("n₂", 0.1, 10.0, 1.0, 0.1, key="sf_n2")
+            n3_sf = st.slider("n₃", 0.1, 10.0, 1.0, 0.1, key="sf_n3")
+        with c2:
+            phi = np.linspace(0, 2*np.pi, 1500)
+            t1 = np.abs(np.cos(m_sf*phi/4) / a_sf) ** n2_sf
+            t2 = np.abs(np.sin(m_sf*phi/4) / b_sf) ** n3_sf
+            r = (t1 + t2) ** (-1.0 / n1_sf)
+            x = r * np.cos(phi)
+            y = r * np.sin(phi)
+            fig, ax = plt.subplots(figsize=(6, 6))
+            ax.plot(x, y, color="#059669", linewidth=2)
+            ax.fill(x, y, color="#059669", alpha=0.2)
+            ax.set_aspect("equal")
+            ax.grid(alpha=0.3)
+            ax.set_title(f"Superformula: m={m_sf}, n=({n1_sf:.1f}, {n2_sf:.1f}, {n3_sf:.1f})",
+                         fontweight="bold")
+            st.pyplot(fig)
+            plt.close()
+        st.markdown(
+            "<div class='info-box'>🌿 <strong>Coba preset:</strong> "
+            "<em>m=5, n₁=2, n₂=7, n₃=7</em> (bintang laut); "
+            "<em>m=3, n₁=4.5, n₂=10, n₃=10</em> (segitiga membulat); "
+            "<em>m=8, n₁=1, n₂=1, n₃=1</em> (bunga 8 sisi).</div>",
+            unsafe_allow_html=True,
+        )
+
+    elif jenis.startswith("🐚"):
+        st.header("🐚 Spiral Fermat")
+        st.markdown(
+            "Spiral Fermat (1636) memiliki persamaan $r^2 = a^2 \\theta$, sehingga $r = \\pm a"
+            "\\sqrt{\\theta}$. Spiral ini muncul pada **susunan biji bunga matahari**, "
+            "**filotaksi tanaman** (susunan daun), dan **galaksi spiral**."
+        )
+        st.latex(r"r(\theta) = \pm\, a\sqrt{\theta}")
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            a_fm = st.slider("a (skala)", 0.1, 2.0, 0.5, 0.1, key="fm_a")
+            put_fm = st.slider("Jumlah putaran", 1, 15, 6, key="fm_p")
+        with c2:
+            theta = np.linspace(0, put_fm*2*np.pi, 2000)
+            r = a_fm * np.sqrt(theta)
+            fig, ax = plt.subplots(figsize=(6, 6))
+            ax.plot(r*np.cos(theta), r*np.sin(theta),
+                    color="#f59e0b", linewidth=2, label="+r")
+            ax.plot(-r*np.cos(theta), -r*np.sin(theta),
+                    color="#dc2626", linewidth=2, label="−r")
+            ax.set_aspect("equal")
+            ax.grid(alpha=0.3)
+            ax.legend()
+            ax.set_title(f"Spiral Fermat (a={a_fm:.1f}, {put_fm} putaran)", fontweight="bold")
+            st.pyplot(fig)
+            plt.close()
+
+    elif jenis.startswith("💧"):
+        from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
+        st.header("💧 Fungsi Sinc 3D (Ripple)")
+        st.markdown(
+            "Fungsi sinc dalam dua dimensi menghasilkan pola **gelombang riak** seperti "
+            "tetesan air di kolam. Fungsi ini fundamental dalam pemrosesan sinyal dan optik."
+        )
+        st.latex(r"z(x, y) = a \cdot \frac{\sin\!\left(b\sqrt{x^2 + y^2}\right)}{\sqrt{x^2 + y^2}}")
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            amp = st.slider("Amplitudo (a)", 1.0, 10.0, 5.0, 0.5, key="sinc_a")
+            freq = st.slider("Frekuensi (b)", 0.1, 3.0, 1.0, 0.1, key="sinc_b")
+            rng = st.slider("Rentang (±r)", 5, 30, 15, key="sinc_r")
+            warna_3d = st.selectbox(
+                "Warna",
+                ["viridis", "plasma", "ocean", "twilight"],
+                key="sinc_cmap",
+            )
+        with c2:
+            x = np.linspace(-rng, rng, 80)
+            y = np.linspace(-rng, rng, 80)
+            X, Y = np.meshgrid(x, y)
+            R_grid = np.sqrt(X**2 + Y**2) + 1e-10
+            Z = amp * np.sin(freq * R_grid) / R_grid
+            fig = plt.figure(figsize=(7, 6))
+            ax = fig.add_subplot(111, projection="3d")
+            ax.plot_surface(X, Y, Z, cmap=warna_3d, edgecolor="none", alpha=0.95)
+            ax.set_title("Fungsi Sinc 3D — Riak Air", fontweight="bold")
+            ax.set_xlabel("x"); ax.set_ylabel("y"); ax.set_zlabel("z")
+            st.pyplot(fig)
+            plt.close()
+
+    elif jenis.startswith("❄️"):
+        st.header("❄️ Koch Snowflake")
+        st.markdown(
+            "**Koch Snowflake** (Helge von Koch, 1904) adalah salah satu fraktal pertama yang "
+            "ditemukan. Mulai dari segitiga sama sisi, setiap sisi dibagi tiga dan bagian tengah "
+            "diganti dengan dua sisi segitiga ke luar — diulang terus-menerus. Setelah tak "
+            "berhingga iterasi, ia memiliki _keliling tak hingga_ tapi _luas terbatas_!"
+        )
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            iter_k = st.slider("Banyak iterasi", 0, 6, 4, key="koch_n")
+            n_sides = 3 * 4**iter_k
+            st.markdown(f"**Jumlah sisi:** {n_sides:,}")
+        with c2:
+            def koch_iter(pts):
+                new_pts = []
+                for i in range(len(pts)-1):
+                    p1 = np.array(pts[i]); p2 = np.array(pts[i+1])
+                    d = p2 - p1
+                    a = p1 + d/3
+                    b = p1 + 2*d/3
+                    ang = np.pi/3
+                    rot = np.array([[np.cos(ang), -np.sin(ang)],
+                                    [np.sin(ang),  np.cos(ang)]])
+                    peak = a + rot @ (b - a)
+                    new_pts.extend([p1.tolist(), a.tolist(), peak.tolist(), b.tolist()])
+                new_pts.append(pts[-1])
+                return new_pts
+            h_tri = np.sqrt(3)/2
+            pts = [(0, 0), (1, 0), (0.5, h_tri), (0, 0)]
+            for _ in range(iter_k):
+                pts = koch_iter(pts)
+            xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
+            fig, ax = plt.subplots(figsize=(6, 6))
+            ax.fill(xs, ys, color="#bfdbfe", edgecolor="#1e40af", linewidth=1.2)
+            ax.set_aspect("equal")
+            ax.axis("off")
+            ax.set_title(f"Koch Snowflake — iterasi {iter_k}", fontweight="bold")
+            st.pyplot(fig)
+            plt.close()
+
+    elif jenis.startswith("🔺"):
+        st.header("🔺 Segitiga Sierpinski")
+        st.markdown(
+            "**Segitiga Sierpiński** (Wacław Sierpiński, 1915) dibangun dengan menghapus segitiga "
+            "tengah dari setiap segitiga, berulang-ulang. Ia adalah contoh klasik **dimensi pecahan** "
+            "(dimensi ≈ 1,585)."
+        )
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            depth = st.slider("Kedalaman iterasi", 0, 8, 5, key="sp_d")
+            n_tri = 3**depth
+            st.markdown(f"**Total segitiga:** {n_tri:,}")
+        with c2:
+            def sierpinski(ax, p1, p2, p3, depth):
+                if depth == 0:
+                    tri = plt.Polygon([p1, p2, p3], facecolor="#7c3aed",
+                                      edgecolor="white", linewidth=0.3)
+                    ax.add_patch(tri)
+                else:
+                    m12 = (p1 + p2) / 2
+                    m23 = (p2 + p3) / 2
+                    m31 = (p3 + p1) / 2
+                    sierpinski(ax, p1, m12, m31, depth-1)
+                    sierpinski(ax, m12, p2, m23, depth-1)
+                    sierpinski(ax, m31, m23, p3, depth-1)
+            fig, ax = plt.subplots(figsize=(6, 6))
+            p1 = np.array([0, 0]); p2 = np.array([1, 0])
+            p3 = np.array([0.5, np.sqrt(3)/2])
+            sierpinski(ax, p1, p2, p3, depth)
+            ax.set_xlim(-0.05, 1.05); ax.set_ylim(-0.05, 0.95)
+            ax.set_aspect("equal")
+            ax.axis("off")
+            ax.set_title(f"Segitiga Sierpinski — kedalaman {depth}", fontweight="bold")
+            st.pyplot(fig)
+            plt.close()
+
+    elif jenis.startswith("🌌"):
+        st.header("🌌 Himpunan Mandelbrot")
+        st.markdown(
+            "**Himpunan Mandelbrot** adalah himpunan bilangan kompleks $c$ untuk mana iterasi "
+            "$z_{n+1} = z_n^2 + c$ (dengan $z_0 = 0$) tidak menuju tak hingga. Ditemukan dan "
+            "divisualisasikan oleh **Benoît Mandelbrot** (1980), ia menjadi simbol _geometri "
+            "fraktal_."
+        )
+        st.latex(r"z_{n+1} = z_n^2 + c, \quad z_0 = 0")
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            cx = st.slider("Pusat x", -2.0, 1.0, -0.5, 0.05, key="mb_cx")
+            cy = st.slider("Pusat y", -1.5, 1.5, 0.0, 0.05, key="mb_cy")
+            zoom = st.slider("Zoom", 0.5, 50.0, 1.0, 0.5, key="mb_z")
+            max_iter = st.slider("Iterasi maksimum", 30, 200, 80, key="mb_iter")
+            cmap_mb = st.selectbox(
+                "Skema warna",
+                ["twilight_shifted", "hot", "inferno", "magma", "ocean"],
+                key="mb_cmap",
+            )
+        with c2:
+            w, h = 400, 400
+            half = 1.5 / zoom
+            x = np.linspace(cx - half, cx + half, w)
+            y = np.linspace(cy - half, cy + half, h)
+            X, Y = np.meshgrid(x, y)
+            C = X + 1j*Y
+            Z = np.zeros_like(C)
+            iters = np.full(C.shape, max_iter, dtype=float)
+            for i in range(max_iter):
+                mask = np.abs(Z) < 2
+                Z[mask] = Z[mask]**2 + C[mask]
+                escaped = mask & (np.abs(Z) >= 2)
+                iters[escaped] = i
+            fig, ax = plt.subplots(figsize=(7, 7))
+            ax.imshow(iters, cmap=cmap_mb,
+                      extent=[cx-half, cx+half, cy-half, cy+half],
+                      origin="lower")
+            ax.set_title(f"Mandelbrot (zoom {zoom:.1f}×)", fontweight="bold")
+            ax.set_xlabel("Re(c)"); ax.set_ylabel("Im(c)")
+            st.pyplot(fig)
+            plt.close()
+        st.markdown(
+            "<div class='info-box'>🔍 <strong>Eksplorasi:</strong> coba zoom ke "
+            "(<em>-0.75, 0.1</em>) atau (<em>-1.25, 0.05</em>) untuk melihat detail yang "
+            "menakjubkan. Mandelbrot memiliki <em>kerumitan tak terbatas</em> — semakin "
+            "diperbesar, semakin banyak detail muncul!</div>",
+            unsafe_allow_html=True,
+        )
+
+    elif jenis.startswith("⭐"):
+        st.header("⭐ Himpunan Julia")
+        st.markdown(
+            "**Himpunan Julia** (Gaston Julia, 1918) menggunakan iterasi yang sama seperti "
+            "Mandelbrot, tetapi konstanta $c$ **tetap** dan setiap titik di bidang menjadi nilai "
+            "awal $z_0$. Untuk setiap nilai $c$ berbeda, kita dapatkan _himpunan Julia_ yang "
+            "berbeda — koneksi dengan Mandelbrot: titik $c$ pada himpunan Mandelbrot "
+            "menghasilkan Julia yang _terhubung_."
+        )
+        st.latex(r"z_{n+1} = z_n^2 + c, \quad z_0 = (x, y)")
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            cr = st.slider("c (real)", -1.0, 1.0, -0.7, 0.01, key="ju_cr")
+            ci = st.slider("c (imajiner)", -1.0, 1.0, 0.27, 0.01, key="ju_ci")
+            max_iter_j = st.slider("Iterasi maksimum", 30, 200, 80, key="ju_iter")
+            cmap_j = st.selectbox(
+                "Skema warna",
+                ["inferno", "plasma", "magma", "twilight", "ocean"],
+                key="ju_cmap",
+            )
+        with c2:
+            c_const = complex(cr, ci)
+            w, h = 400, 400
+            x = np.linspace(-1.5, 1.5, w)
+            y = np.linspace(-1.5, 1.5, h)
+            X, Y = np.meshgrid(x, y)
+            Z = X + 1j*Y
+            iters = np.full(Z.shape, max_iter_j, dtype=float)
+            for i in range(max_iter_j):
+                mask = np.abs(Z) < 2
+                Z[mask] = Z[mask]**2 + c_const
+                escaped = mask & (np.abs(Z) >= 2)
+                iters[escaped] = i
+            fig, ax = plt.subplots(figsize=(7, 7))
+            ax.imshow(iters, cmap=cmap_j, extent=[-1.5, 1.5, -1.5, 1.5], origin="lower")
+            ax.set_title(f"Julia: c = {cr:.2f} + {ci:.2f}i", fontweight="bold")
+            st.pyplot(fig)
+            plt.close()
+        st.markdown(
+            "<div class='info-box'>✨ <strong>Coba preset:</strong> "
+            "<em>c = −0.7 + 0.27i</em> (klasik); "
+            "<em>c = −0.4 + 0.6i</em> (debu fraktal); "
+            "<em>c = 0.285 + 0.01i</em> (taman bunga); "
+            "<em>c = −0.835 − 0.2321i</em> (dendrit).</div>",
+            unsafe_allow_html=True,
+        )
+
+    elif jenis.startswith("🦎"):
+        st.header("🦎 Atraktor Hénon")
+        st.markdown(
+            "**Atraktor Hénon** (Michel Hénon, 1976) adalah _sistem dinamis diskrit_ "
+            "sederhana yang menghasilkan pola **kacau (chaotic) tapi terstruktur** — contoh "
+            "klasik bagaimana persamaan deterministik dapat menghasilkan perilaku tak terduga."
+        )
+        st.latex(r"x_{n+1} = 1 - a\, x_n^2 + y_n, \quad y_{n+1} = b\, x_n")
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            a_hn = st.slider("a", 1.0, 1.5, 1.4, 0.01, key="hn_a")
+            b_hn = st.slider("b", 0.1, 0.4, 0.3, 0.01, key="hn_b")
+            n_hn = st.slider("Jumlah titik", 1000, 20000, 10000, 500, key="hn_n")
+        with c2:
+            x_arr = np.zeros(n_hn); y_arr = np.zeros(n_hn)
+            x_arr[0], y_arr[0] = 0.1, 0.1
+            for i in range(1, n_hn):
+                x_arr[i] = 1 - a_hn*x_arr[i-1]**2 + y_arr[i-1]
+                y_arr[i] = b_hn*x_arr[i-1]
+            fig, ax = plt.subplots(figsize=(7, 6))
+            ax.scatter(x_arr, y_arr, s=0.4, c=range(n_hn), cmap="plasma", alpha=0.7)
+            ax.set_title(f"Atraktor Hénon (a={a_hn:.2f}, b={b_hn:.2f})", fontweight="bold")
+            ax.grid(alpha=0.3)
+            ax.set_xlabel("x"); ax.set_ylabel("y")
+            st.pyplot(fig)
+            plt.close()
+        st.markdown(
+            "<div class='info-box'>🌀 <strong>Pertanyaan reflektif:</strong> Persamaannya "
+            "hanya dua baris dan deterministik (tidak ada acak), tetapi pola yang dihasilkan "
+            "tampak <em>kacau</em>. Inilah esensi <strong>teori chaos</strong>: keteraturan "
+            "dapat melahirkan kerumitan.</div>",
+            unsafe_allow_html=True,
+        )
 
     st.markdown(
         """
@@ -2065,7 +2517,7 @@ def page_ch7():
         <div class='quiz-box'>
         <h3 style='margin-top:0'>🧩 Soal 3 — Pola Lantai Sekolah</h3>
         Sebuah sekolah memasang ubin di selasar dengan pola seperti gambar di bawah. Setiap
-        gambar menunjukkan langkah ke-$n$ dari penyusunan ubin:<br><br>
+        gambar menunjukkan langkah ke-<em>n</em> dari penyusunan ubin:<br><br>
         - Langkah 1: <strong>1</strong> ubin gelap (di tengah), <strong>0</strong> ubin terang<br>
         - Langkah 2: <strong>1</strong> ubin gelap, <strong>4</strong> ubin terang (mengelilingi)<br>
         - Langkah 3: <strong>1</strong> ubin gelap, <strong>12</strong> ubin terang (dua lapis)<br>
@@ -2073,7 +2525,7 @@ def page_ch7():
         <strong>Pertanyaan:</strong>
         <ol>
         <li>Berapa banyak ubin terang pada langkah ke-10?</li>
-        <li>Tulislah rumus umum jumlah <em>seluruh</em> ubin (gelap + terang) pada langkah ke-$n$.</li>
+        <li>Tulislah rumus umum jumlah <em>seluruh</em> ubin (gelap + terang) pada langkah ke-<em>n</em>.</li>
         <li>Pola apa yang Anda kenali, dan bagaimana Anda akan menggunakan pola ini sebagai
             <em>kegiatan eksplorasi</em> di kelas?</li>
         </ol>
