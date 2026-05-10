@@ -1,7 +1,5 @@
 """
-Website Interaktif: Pola dan Pemikiran Aljabar dalam Matematika
-Untuk Mahasiswa Calon Guru Sekolah Dasar
-Dibuat dengan Streamlit
+POLAR: POla dan aLjabar inteRaktif
 """
 
 import streamlit as st
@@ -14,7 +12,7 @@ import pandas as pd
 
 # ---------- KONFIGURASI HALAMAN ----------
 st.set_page_config(
-    page_title="Pola & Pemikiran Aljabar | Calon Guru SD",
+    page_title="POLAR: POla dan aLjabar inteRaktif",
     page_icon="🧮",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -22,20 +20,112 @@ st.set_page_config(
 
 plt.rcParams["font.family"] = "DejaVu Sans"
 
-# ---------- CSS KUSTOM ----------
-CUSTOM_CSS = """
-<style>
-/* ===== PALET WARNA UTAMA (LIGHT MODE PAKSA) ===== */
-.stApp {
-    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%) !important;
-    color: #1e293b !important;
-}
+# ---------- CSS KUSTOM (DENGAN DUKUNGAN DARK/LIGHT MODE) ----------
+def get_custom_css(dark: bool = False) -> str:
+    """Mengembalikan CSS sesuai mode tampilan (terang atau gelap)."""
+    if dark:
+        # Palet warna mode GELAP
+        c = {
+            "bg_main": "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)",
+            "text_main": "#e2e8f0",
+            "h1": "#93c5fd",
+            "h2": "#60a5fa",
+            "h3": "#a78bfa",
+            "h456": "#93c5fd",
+            "info_bg": "linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)",
+            "info_border": "#60a5fa",
+            "info_text": "#dbeafe",
+            "info_strong": "#bfdbfe",
+            "concept_bg": "linear-gradient(135deg, #78350f 0%, #92400e 100%)",
+            "concept_border": "#fbbf24",
+            "concept_text": "#fef3c7",
+            "concept_strong": "#fde68a",
+            "example_bg": "linear-gradient(135deg, #064e3b 0%, #065f46 100%)",
+            "example_border": "#34d399",
+            "example_text": "#d1fae5",
+            "example_strong": "#a7f3d0",
+            "activity_bg": "linear-gradient(135deg, #831843 0%, #9d174d 100%)",
+            "activity_border": "#f472b6",
+            "activity_text": "#fce7f3",
+            "activity_strong": "#fbcfe8",
+            "quiz_bg": "linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%)",
+            "quiz_border": "#a78bfa",
+            "quiz_text": "#ede9fe",
+            "quiz_strong": "#ddd6fe",
+            "card_bg": "#1e293b",
+            "card_border": "#60a5fa",
+            "card_h4": "#93c5fd",
+            "table_th_bg": "#1e3a8a",
+            "table_th_color": "#dbeafe",
+            "table_even": "#1e293b",
+            "table_odd": "#0f172a",
+            "table_border": "#334155",
+            "code_bg": "#312e81",
+            "code_color": "#fbcfe8",
+            "footer_bg": "#020617",
+            "footer_text": "#94a3b8",
+            "caption": "#94a3b8",
+            "link": "#60a5fa",
+            "link_hover": "#93c5fd",
+        }
+    else:
+        # Palet warna mode TERANG
+        c = {
+            "bg_main": "linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%)",
+            "text_main": "#1e293b",
+            "h1": "#1e3a8a",
+            "h2": "#2563eb",
+            "h3": "#4f46e5",
+            "h456": "#1e3a8a",
+            "info_bg": "linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)",
+            "info_border": "#2563eb",
+            "info_text": "#1e293b",
+            "info_strong": "#1e3a8a",
+            "concept_bg": "linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)",
+            "concept_border": "#f59e0b",
+            "concept_text": "#78350f",
+            "concept_strong": "#92400e",
+            "example_bg": "linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)",
+            "example_border": "#059669",
+            "example_text": "#064e3b",
+            "example_strong": "#064e3b",
+            "activity_bg": "linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%)",
+            "activity_border": "#db2777",
+            "activity_text": "#831843",
+            "activity_strong": "#9d174d",
+            "quiz_bg": "linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%)",
+            "quiz_border": "#7c3aed",
+            "quiz_text": "#3730a3",
+            "quiz_strong": "#4c1d95",
+            "card_bg": "#ffffff",
+            "card_border": "#2563eb",
+            "card_h4": "#1e3a8a",
+            "table_th_bg": "#e0e7ff",
+            "table_th_color": "#1e3a8a",
+            "table_even": "#f8fafc",
+            "table_odd": "#ffffff",
+            "table_border": "#cbd5e1",
+            "code_bg": "#fce7f3",
+            "code_color": "#be185d",
+            "footer_bg": "#1e293b",
+            "footer_text": "#cbd5e1",
+            "caption": "#475569",
+            "link": "#2563eb",
+            "link_hover": "#1e40af",
+        }
 
-/* ===== PASTIKAN SEMUA TEKS GELAP DI AREA UTAMA ===== */
+    return f"""
+<style>
+/* ===== LATAR APLIKASI ===== */
+.stApp {{
+    background: {c['bg_main']} !important;
+    color: {c['text_main']} !important;
+}}
+
+/* ===== TEKS UTAMA ===== */
 .main .block-container,
 .main .block-container p,
 .main .block-container li,
-.main .block-container span:not([class*="hero"]):not([class*="info-box"]):not([class*="concept-box"]):not([class*="example-box"]):not([class*="activity-box"]):not([class*="quiz-box"]),
 .main .block-container div,
 .main .block-container label,
 .main .block-container td,
@@ -46,268 +136,227 @@ CUSTOM_CSS = """
 .stMarkdown span,
 [data-testid="stMarkdownContainer"] p,
 [data-testid="stMarkdownContainer"] li,
-[data-testid="stMarkdownContainer"] span {
-    color: #1e293b !important;
-}
+[data-testid="stMarkdownContainer"] span {{
+    color: {c['text_main']} !important;
+}}
 
-/* ===== HEADINGS DI AREA UTAMA ===== */
-.main h1, [data-testid="stMarkdownContainer"] h1 {
-    color: #1e3a8a !important;
+/* ===== HEADINGS ===== */
+.main h1, [data-testid="stMarkdownContainer"] h1 {{
+    color: {c['h1']} !important;
     font-weight: 700 !important;
     border-bottom: 4px solid #fbbf24 !important;
     padding-bottom: 12px !important;
     margin-bottom: 24px !important;
-}
-.main h2, [data-testid="stMarkdownContainer"] h2 {
-    color: #2563eb !important;
+}}
+.main h2, [data-testid="stMarkdownContainer"] h2 {{
+    color: {c['h2']} !important;
     font-weight: 600 !important;
     margin-top: 28px !important;
-    border-left: 5px solid #2563eb !important;
+    border-left: 5px solid {c['h2']} !important;
     padding-left: 12px !important;
-}
-.main h3, [data-testid="stMarkdownContainer"] h3 {
-    color: #4f46e5 !important;
+}}
+.main h3, [data-testid="stMarkdownContainer"] h3 {{
+    color: {c['h3']} !important;
     font-weight: 600 !important;
-}
+}}
 .main h4, .main h5, .main h6,
 [data-testid="stMarkdownContainer"] h4,
 [data-testid="stMarkdownContainer"] h5,
-[data-testid="stMarkdownContainer"] h6 {
-    color: #1e3a8a !important;
-}
+[data-testid="stMarkdownContainer"] h6 {{
+    color: {c['h456']} !important;
+}}
 
-/* ===== BOX KONTEN — SEMUA TEKS DI DALAMNYA HARUS GELAP ===== */
-.info-box, .info-box * {
-    color: #1e293b !important;
-}
-.info-box {
-    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
-    border-left: 5px solid #2563eb !important;
+/* ===== INFO BOX (BIRU) ===== */
+.info-box, .info-box * {{ color: {c['info_text']} !important; }}
+.info-box {{
+    background: {c['info_bg']} !important;
+    border-left: 5px solid {c['info_border']} !important;
     padding: 16px 22px !important;
     border-radius: 10px !important;
     margin: 16px 0 !important;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
-}
-.info-box strong { color: #1e3a8a !important; }
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+}}
+.info-box strong {{ color: {c['info_strong']} !important; }}
 
-.concept-box, .concept-box * {
-    color: #78350f !important;
-}
-.concept-box {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
-    border-left: 5px solid #f59e0b !important;
+/* ===== CONCEPT BOX (KUNING) ===== */
+.concept-box, .concept-box * {{ color: {c['concept_text']} !important; }}
+.concept-box {{
+    background: {c['concept_bg']} !important;
+    border-left: 5px solid {c['concept_border']} !important;
     padding: 16px 22px !important;
     border-radius: 10px !important;
     margin: 16px 0 !important;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
-}
-.concept-box strong { color: #92400e !important; }
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+}}
+.concept-box strong {{ color: {c['concept_strong']} !important; }}
 
-.example-box, .example-box * {
-    color: #064e3b !important;
-}
-.example-box {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important;
-    border-left: 5px solid #059669 !important;
+/* ===== EXAMPLE BOX (HIJAU) ===== */
+.example-box, .example-box * {{ color: {c['example_text']} !important; }}
+.example-box {{
+    background: {c['example_bg']} !important;
+    border-left: 5px solid {c['example_border']} !important;
     padding: 16px 22px !important;
     border-radius: 10px !important;
     margin: 16px 0 !important;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
-}
-.example-box strong { color: #064e3b !important; }
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+}}
+.example-box strong {{ color: {c['example_strong']} !important; }}
 
-.activity-box, .activity-box * {
-    color: #831843 !important;
-}
-.activity-box {
-    background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%) !important;
-    border-left: 5px solid #db2777 !important;
+/* ===== ACTIVITY BOX (PINK) ===== */
+.activity-box, .activity-box * {{ color: {c['activity_text']} !important; }}
+.activity-box {{
+    background: {c['activity_bg']} !important;
+    border-left: 5px solid {c['activity_border']} !important;
     padding: 16px 22px !important;
     border-radius: 10px !important;
     margin: 16px 0 !important;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
-}
-.activity-box strong { color: #9d174d !important; }
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+}}
+.activity-box strong {{ color: {c['activity_strong']} !important; }}
 
-.quiz-box, .quiz-box * {
-    color: #3730a3 !important;
-}
-.quiz-box {
-    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%) !important;
-    border: 2px solid #7c3aed !important;
+/* ===== QUIZ BOX (UNGU) ===== */
+.quiz-box, .quiz-box * {{ color: {c['quiz_text']} !important; }}
+.quiz-box {{
+    background: {c['quiz_bg']} !important;
+    border: 2px solid {c['quiz_border']} !important;
     padding: 22px !important;
     border-radius: 12px !important;
     margin: 22px 0 !important;
-    box-shadow: 0 4px 12px rgba(124,58,237,0.15) !important;
-}
-.quiz-box h3 { color: #4c1d95 !important; }
-.quiz-box strong { color: #4c1d95 !important; }
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}}
+.quiz-box h3 {{ color: {c['quiz_strong']} !important; }}
+.quiz-box strong {{ color: {c['quiz_strong']} !important; }}
 
-/* ===== HERO CARD (TEKS PUTIH PADA GRADIEN GELAP) ===== */
-/* Specificity tinggi agar menang vs [data-testid] h1 dan .main h1 */
+/* ===== HERO CARD (TETAP TEKS PUTIH PADA GRADIEN GELAP) ===== */
 div.hero,
-div.hero h1,
-div.hero h2,
-div.hero h3,
-div.hero p,
-div.hero em,
-div.hero span,
-div.hero strong,
+div.hero h1, div.hero h2, div.hero h3,
+div.hero p, div.hero em, div.hero span, div.hero strong,
 [data-testid="stMarkdownContainer"] div.hero,
 [data-testid="stMarkdownContainer"] div.hero h1,
 [data-testid="stMarkdownContainer"] div.hero h2,
 [data-testid="stMarkdownContainer"] div.hero h3,
 [data-testid="stMarkdownContainer"] div.hero p,
-[data-testid="stMarkdownContainer"] div.hero em {
+[data-testid="stMarkdownContainer"] div.hero em {{
     color: #ffffff !important;
-}
-div.hero {
+}}
+div.hero {{
     background: linear-gradient(135deg, #1e3a8a 0%, #4f46e5 50%, #7c3aed 100%) !important;
     padding: 48px 32px !important;
     border-radius: 18px !important;
     margin: 12px 0 28px 0 !important;
     text-align: center !important;
-    box-shadow: 0 12px 32px rgba(30,58,138,0.25) !important;
-}
+    box-shadow: 0 12px 32px rgba(30,58,138,0.35) !important;
+}}
 [data-testid="stMarkdownContainer"] div.hero h1,
-div.hero h1 {
+div.hero h1 {{
     border: none !important;
     font-size: 2.6em !important;
     margin-bottom: 12px !important;
     padding: 0 !important;
-}
+}}
 [data-testid="stMarkdownContainer"] div.hero h2,
-div.hero h2 {
+div.hero h2 {{
     border: none !important;
     padding: 0 !important;
     margin: 0 !important;
-}
-div.hero p {
+}}
+div.hero p {{
     font-size: 1.15em !important;
     opacity: 0.95 !important;
     margin: 6px 0 !important;
-}
+}}
 
 /* ===== FEATURE CARDS ===== */
-.feature-card, .feature-card * {
-    color: #1e293b !important;
-}
-.feature-card {
-    background: white !important;
+.feature-card, .feature-card * {{ color: {c['text_main']} !important; }}
+.feature-card {{
+    background: {c['card_bg']} !important;
     padding: 22px !important;
     border-radius: 12px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
-    border-top: 4px solid #2563eb !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    border-top: 4px solid {c['card_border']} !important;
     margin: 8px 0 !important;
     height: 100% !important;
-}
-.feature-card h4 {
-    color: #1e3a8a !important;
+}}
+.feature-card h4 {{
+    color: {c['card_h4']} !important;
     margin-top: 0 !important;
-}
+}}
 
-/* ===== SIDEBAR (TEKS PUTIH PADA GRADIEN GELAP) ===== */
-section[data-testid="stSidebar"] {
+/* ===== SIDEBAR (TETAP GRADIEN GELAP DENGAN TEKS PUTIH) ===== */
+section[data-testid="stSidebar"] {{
     background: linear-gradient(180deg, #1e3a8a 0%, #312e81 50%, #4f46e5 100%) !important;
-}
+}}
 section[data-testid="stSidebar"] *,
 section[data-testid="stSidebar"] p,
 section[data-testid="stSidebar"] label,
 section[data-testid="stSidebar"] span,
 section[data-testid="stSidebar"] div,
-section[data-testid="stSidebar"] li {
+section[data-testid="stSidebar"] li {{
     color: white !important;
-}
+}}
 section[data-testid="stSidebar"] .stAlert,
-section[data-testid="stSidebar"] .stAlert * {
+section[data-testid="stSidebar"] .stAlert * {{
     color: #1e293b !important;
     background: rgba(255,255,255,0.95) !important;
-}
+}}
 
 /* ===== KOMPONEN STREAMLIT ===== */
-/* Slider label */
-.stSlider label, .stSlider [data-testid="stWidgetLabel"] {
-    color: #1e293b !important;
+.stSlider label, .stSlider [data-testid="stWidgetLabel"],
+.stSelectbox label, .stSelectbox [data-testid="stWidgetLabel"],
+.stTextInput label, .stTextInput [data-testid="stWidgetLabel"],
+.stRadio label, .stRadio [data-testid="stWidgetLabel"] {{
+    color: {c['text_main']} !important;
     font-weight: 600 !important;
-}
-/* Selectbox label */
-.stSelectbox label, .stSelectbox [data-testid="stWidgetLabel"] {
-    color: #1e293b !important;
+}}
+.streamlit-expanderHeader, [data-testid="stExpander"] summary {{
+    color: {c['h1']} !important;
     font-weight: 600 !important;
-}
-/* Text input label */
-.stTextInput label, .stTextInput [data-testid="stWidgetLabel"] {
-    color: #1e293b !important;
-    font-weight: 600 !important;
-}
-/* Radio label */
-.stRadio label, .stRadio [data-testid="stWidgetLabel"] {
-    color: #1e293b !important;
-    font-weight: 600 !important;
-}
-/* Expander */
-.streamlit-expanderHeader, [data-testid="stExpander"] summary {
-    color: #1e3a8a !important;
-    font-weight: 600 !important;
-}
-[data-testid="stExpander"] [data-testid="stMarkdownContainer"] * {
-    color: #1e293b !important;
-}
-/* DataFrame */
-.stDataFrame, .stDataFrame * {
-    color: #1e293b !important;
-}
-/* Caption */
-.stCaption, [data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] * {
-    color: #475569 !important;
-}
-/* Code blocks (inline) */
-code {
-    color: #be185d !important;
-    background: #fce7f3 !important;
+}}
+[data-testid="stExpander"] [data-testid="stMarkdownContainer"] * {{
+    color: {c['text_main']} !important;
+}}
+.stDataFrame, .stDataFrame * {{
+    color: {c['text_main']} !important;
+}}
+.stCaption, [data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] * {{
+    color: {c['caption']} !important;
+}}
+code {{
+    color: {c['code_color']} !important;
+    background: {c['code_bg']} !important;
     padding: 2px 6px !important;
     border-radius: 4px !important;
-}
-/* Tables in markdown */
-table, table th, table td {
-    color: #1e293b !important;
-    border-color: #cbd5e1 !important;
-}
-table th {
-    background: #e0e7ff !important;
-    color: #1e3a8a !important;
+}}
+table, table th, table td {{
+    color: {c['text_main']} !important;
+    border-color: {c['table_border']} !important;
+}}
+table th {{
+    background: {c['table_th_bg']} !important;
+    color: {c['table_th_color']} !important;
     font-weight: 700 !important;
-}
-table tr:nth-child(even) {
-    background: #f8fafc !important;
-}
-table tr:nth-child(odd) {
-    background: #ffffff !important;
-}
+}}
+table tr:nth-child(even) {{ background: {c['table_even']} !important; }}
+table tr:nth-child(odd) {{ background: {c['table_odd']} !important; }}
 
-/* ===== FOOTER NOTE ===== */
-.footer-note, .footer-note * {
-    color: #cbd5e1 !important;
-}
-.footer-note {
-    background: #1e293b !important;
+/* ===== FOOTER ===== */
+.footer-note, .footer-note * {{ color: {c['footer_text']} !important; }}
+.footer-note {{
+    background: {c['footer_bg']} !important;
     padding: 18px !important;
     border-radius: 10px !important;
     margin-top: 30px !important;
     text-align: center !important;
     font-size: 0.9em !important;
-}
+}}
 
 /* ===== LINK ===== */
-a, a:visited {
-    color: #2563eb !important;
-}
-a:hover {
-    color: #1e40af !important;
-}
+a, a:visited {{ color: {c['link']} !important; }}
+a:hover {{ color: {c['link_hover']} !important; }}
 </style>
 """
-st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
+# CSS akan diterapkan setelah toggle mode dibaca dari sidebar (lihat di bawah)
+
 
 # ---------- HELPER VISUALISASI ----------
 def fig_setup(figsize=(9, 4.5)):
@@ -323,6 +372,21 @@ def style_axes(ax, equal=False, grid=True):
         ax.set_aspect("equal")
 
 # ---------- SIDEBAR NAVIGASI ----------
+# 🎨 Toggle mode tampilan (Light/Dark) — di paling atas sidebar
+st.sidebar.markdown("### 🎨 Mode Tampilan")
+mode_choice = st.sidebar.radio(
+    "Pilih tampilan:",
+    ["☀️ Terang", "🌙 Gelap"],
+    horizontal=True,
+    label_visibility="collapsed",
+    key="theme_mode_radio",
+)
+IS_DARK = "Gelap" in mode_choice
+
+# Terapkan CSS sesuai pilihan pengguna
+st.markdown(get_custom_css(dark=IS_DARK), unsafe_allow_html=True)
+
+st.sidebar.markdown("---")
 st.sidebar.markdown("## 📚 Navigasi Materi")
 st.sidebar.markdown("---")
 
