@@ -25,120 +25,285 @@ plt.rcParams["font.family"] = "DejaVu Sans"
 # ---------- CSS KUSTOM ----------
 CUSTOM_CSS = """
 <style>
+/* ===== PALET WARNA UTAMA (LIGHT MODE PAKSA) ===== */
 .stApp {
-    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%) !important;
+    color: #1e293b !important;
 }
 
-h1 {
-    color: #1e3a8a;
-    font-weight: 700;
-    border-bottom: 4px solid #fbbf24;
-    padding-bottom: 12px;
-    margin-bottom: 24px;
-}
-h2 {
-    color: #2563eb;
-    font-weight: 600;
-    margin-top: 28px;
-    border-left: 5px solid #2563eb;
-    padding-left: 12px;
-}
-h3 {
-    color: #4f46e5;
-    font-weight: 600;
+/* ===== PASTIKAN SEMUA TEKS GELAP DI AREA UTAMA ===== */
+.main .block-container,
+.main .block-container p,
+.main .block-container li,
+.main .block-container span:not([class*="hero"]):not([class*="info-box"]):not([class*="concept-box"]):not([class*="example-box"]):not([class*="activity-box"]):not([class*="quiz-box"]),
+.main .block-container div,
+.main .block-container label,
+.main .block-container td,
+.main .block-container th,
+.stMarkdown,
+.stMarkdown p,
+.stMarkdown li,
+.stMarkdown span,
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stMarkdownContainer"] span {
+    color: #1e293b !important;
 }
 
+/* ===== HEADINGS DI AREA UTAMA ===== */
+.main h1, [data-testid="stMarkdownContainer"] h1 {
+    color: #1e3a8a !important;
+    font-weight: 700 !important;
+    border-bottom: 4px solid #fbbf24 !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 24px !important;
+}
+.main h2, [data-testid="stMarkdownContainer"] h2 {
+    color: #2563eb !important;
+    font-weight: 600 !important;
+    margin-top: 28px !important;
+    border-left: 5px solid #2563eb !important;
+    padding-left: 12px !important;
+}
+.main h3, [data-testid="stMarkdownContainer"] h3 {
+    color: #4f46e5 !important;
+    font-weight: 600 !important;
+}
+.main h4, .main h5, .main h6,
+[data-testid="stMarkdownContainer"] h4,
+[data-testid="stMarkdownContainer"] h5,
+[data-testid="stMarkdownContainer"] h6 {
+    color: #1e3a8a !important;
+}
+
+/* ===== BOX KONTEN — SEMUA TEKS DI DALAMNYA HARUS GELAP ===== */
+.info-box, .info-box * {
+    color: #1e293b !important;
+}
 .info-box {
-    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-    border-left: 5px solid #2563eb;
-    padding: 16px 22px;
-    border-radius: 10px;
-    margin: 16px 0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
+    border-left: 5px solid #2563eb !important;
+    padding: 16px 22px !important;
+    border-radius: 10px !important;
+    margin: 16px 0 !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
+}
+.info-box strong { color: #1e3a8a !important; }
+
+.concept-box, .concept-box * {
+    color: #78350f !important;
 }
 .concept-box {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border-left: 5px solid #f59e0b;
-    padding: 16px 22px;
-    border-radius: 10px;
-    margin: 16px 0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+    border-left: 5px solid #f59e0b !important;
+    padding: 16px 22px !important;
+    border-radius: 10px !important;
+    margin: 16px 0 !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
+}
+.concept-box strong { color: #92400e !important; }
+
+.example-box, .example-box * {
+    color: #064e3b !important;
 }
 .example-box {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-    border-left: 5px solid #059669;
-    padding: 16px 22px;
-    border-radius: 10px;
-    margin: 16px 0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important;
+    border-left: 5px solid #059669 !important;
+    padding: 16px 22px !important;
+    border-radius: 10px !important;
+    margin: 16px 0 !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
+}
+.example-box strong { color: #064e3b !important; }
+
+.activity-box, .activity-box * {
+    color: #831843 !important;
 }
 .activity-box {
-    background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
-    border-left: 5px solid #db2777;
-    padding: 16px 22px;
-    border-radius: 10px;
-    margin: 16px 0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%) !important;
+    border-left: 5px solid #db2777 !important;
+    padding: 16px 22px !important;
+    border-radius: 10px !important;
+    margin: 16px 0 !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
+}
+.activity-box strong { color: #9d174d !important; }
+
+.quiz-box, .quiz-box * {
+    color: #3730a3 !important;
 }
 .quiz-box {
-    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
-    border: 2px solid #7c3aed;
-    padding: 22px;
-    border-radius: 12px;
-    margin: 22px 0;
-    box-shadow: 0 4px 12px rgba(124,58,237,0.15);
+    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%) !important;
+    border: 2px solid #7c3aed !important;
+    padding: 22px !important;
+    border-radius: 12px !important;
+    margin: 22px 0 !important;
+    box-shadow: 0 4px 12px rgba(124,58,237,0.15) !important;
+}
+.quiz-box h3 { color: #4c1d95 !important; }
+.quiz-box strong { color: #4c1d95 !important; }
+
+/* ===== HERO CARD (TEKS PUTIH PADA GRADIEN GELAP) ===== */
+/* Specificity tinggi agar menang vs [data-testid] h1 dan .main h1 */
+div.hero,
+div.hero h1,
+div.hero h2,
+div.hero h3,
+div.hero p,
+div.hero em,
+div.hero span,
+div.hero strong,
+[data-testid="stMarkdownContainer"] div.hero,
+[data-testid="stMarkdownContainer"] div.hero h1,
+[data-testid="stMarkdownContainer"] div.hero h2,
+[data-testid="stMarkdownContainer"] div.hero h3,
+[data-testid="stMarkdownContainer"] div.hero p,
+[data-testid="stMarkdownContainer"] div.hero em {
+    color: #ffffff !important;
+}
+div.hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #4f46e5 50%, #7c3aed 100%) !important;
+    padding: 48px 32px !important;
+    border-radius: 18px !important;
+    margin: 12px 0 28px 0 !important;
+    text-align: center !important;
+    box-shadow: 0 12px 32px rgba(30,58,138,0.25) !important;
+}
+[data-testid="stMarkdownContainer"] div.hero h1,
+div.hero h1 {
+    border: none !important;
+    font-size: 2.6em !important;
+    margin-bottom: 12px !important;
+    padding: 0 !important;
+}
+[data-testid="stMarkdownContainer"] div.hero h2,
+div.hero h2 {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+div.hero p {
+    font-size: 1.15em !important;
+    opacity: 0.95 !important;
+    margin: 6px 0 !important;
 }
 
-.hero {
-    background: linear-gradient(135deg, #1e3a8a 0%, #4f46e5 50%, #7c3aed 100%);
-    color: white;
-    padding: 48px 32px;
-    border-radius: 18px;
-    margin: 12px 0 28px 0;
-    text-align: center;
-    box-shadow: 0 12px 32px rgba(30,58,138,0.25);
+/* ===== FEATURE CARDS ===== */
+.feature-card, .feature-card * {
+    color: #1e293b !important;
 }
-.hero h1 {
-    color: white;
-    border: none;
-    font-size: 2.6em;
-    margin-bottom: 12px;
-}
-.hero p {
-    font-size: 1.15em;
-    opacity: 0.95;
-    margin: 6px 0;
-}
-
 .feature-card {
-    background: white;
-    padding: 22px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    border-top: 4px solid #2563eb;
-    margin: 8px 0;
-    height: 100%;
+    background: white !important;
+    padding: 22px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+    border-top: 4px solid #2563eb !important;
+    margin: 8px 0 !important;
+    height: 100% !important;
 }
 .feature-card h4 {
-    color: #1e3a8a;
-    margin-top: 0;
+    color: #1e3a8a !important;
+    margin-top: 0 !important;
 }
 
+/* ===== SIDEBAR (TEKS PUTIH PADA GRADIEN GELAP) ===== */
 section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #1e3a8a 0%, #312e81 50%, #4f46e5 100%);
+    background: linear-gradient(180deg, #1e3a8a 0%, #312e81 50%, #4f46e5 100%) !important;
 }
-section[data-testid="stSidebar"] * {
+section[data-testid="stSidebar"] *,
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] span,
+section[data-testid="stSidebar"] div,
+section[data-testid="stSidebar"] li {
     color: white !important;
 }
+section[data-testid="stSidebar"] .stAlert,
+section[data-testid="stSidebar"] .stAlert * {
+    color: #1e293b !important;
+    background: rgba(255,255,255,0.95) !important;
+}
 
+/* ===== KOMPONEN STREAMLIT ===== */
+/* Slider label */
+.stSlider label, .stSlider [data-testid="stWidgetLabel"] {
+    color: #1e293b !important;
+    font-weight: 600 !important;
+}
+/* Selectbox label */
+.stSelectbox label, .stSelectbox [data-testid="stWidgetLabel"] {
+    color: #1e293b !important;
+    font-weight: 600 !important;
+}
+/* Text input label */
+.stTextInput label, .stTextInput [data-testid="stWidgetLabel"] {
+    color: #1e293b !important;
+    font-weight: 600 !important;
+}
+/* Radio label */
+.stRadio label, .stRadio [data-testid="stWidgetLabel"] {
+    color: #1e293b !important;
+    font-weight: 600 !important;
+}
+/* Expander */
+.streamlit-expanderHeader, [data-testid="stExpander"] summary {
+    color: #1e3a8a !important;
+    font-weight: 600 !important;
+}
+[data-testid="stExpander"] [data-testid="stMarkdownContainer"] * {
+    color: #1e293b !important;
+}
+/* DataFrame */
+.stDataFrame, .stDataFrame * {
+    color: #1e293b !important;
+}
+/* Caption */
+.stCaption, [data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] * {
+    color: #475569 !important;
+}
+/* Code blocks (inline) */
+code {
+    color: #be185d !important;
+    background: #fce7f3 !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+}
+/* Tables in markdown */
+table, table th, table td {
+    color: #1e293b !important;
+    border-color: #cbd5e1 !important;
+}
+table th {
+    background: #e0e7ff !important;
+    color: #1e3a8a !important;
+    font-weight: 700 !important;
+}
+table tr:nth-child(even) {
+    background: #f8fafc !important;
+}
+table tr:nth-child(odd) {
+    background: #ffffff !important;
+}
+
+/* ===== FOOTER NOTE ===== */
+.footer-note, .footer-note * {
+    color: #cbd5e1 !important;
+}
 .footer-note {
-    background: #1e293b;
-    color: #cbd5e1;
-    padding: 18px;
-    border-radius: 10px;
-    margin-top: 30px;
-    text-align: center;
-    font-size: 0.9em;
+    background: #1e293b !important;
+    padding: 18px !important;
+    border-radius: 10px !important;
+    margin-top: 30px !important;
+    text-align: center !important;
+    font-size: 0.9em !important;
+}
+
+/* ===== LINK ===== */
+a, a:visited {
+    color: #2563eb !important;
+}
+a:hover {
+    color: #1e40af !important;
 }
 </style>
 """
